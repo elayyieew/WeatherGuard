@@ -4,20 +4,24 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
     "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "release": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "debug": {
+      "developmentClient": true
+    },
+    "internal": {
       "distribution": "internal"
     },
     "production": {
-      "workflow": "managed", 
-      "autoIncrement": true,
-      "buildDirectory": "WeatherGuard", 
-      "hooks": {
-        "pre-install": "ls -al /home/expo/workingdir/build/" 
-      }
+      "autoIncrement": true
     }
   },
   "submit": {
