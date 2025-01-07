@@ -12,7 +12,12 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "workflow": "managed", 
+      "autoIncrement": true,
+      "buildDirectory": "WeatherGuard", 
+      "hooks": {
+        "pre-install": "ls -al /home/expo/workingdir/build/" 
+      }
     }
   },
   "submit": {
