@@ -112,7 +112,6 @@ const Homepage = ({ navigation }) => {
       </View>
 
       {/* Scrollable Weather Forecast */}
-      <Text style={styles.weekly}>Weekly Forecast</Text>
       <View style={styles.forecastSection}>
         {/* Left Arrow */}
         <TouchableOpacity onPress={scrollToLeft} style={[styles.arrowButton, { left: 10 }]}>

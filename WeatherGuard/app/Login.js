@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
   Text,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Button } from 'react-native-paper';
@@ -89,17 +90,20 @@ const Login = ({ navigation }) => {
             </Text>
           </View>
         </View>
-        <Button
-          mode="contained"
-          onPress={handleLogin}
-          buttonColor="#FCB316"
-          style={styles.button}
-          labelStyle={styles.buttonText}
-          loading={loading}
-          disabled={loading}
-        >
-          Log In
-        </Button>
+        <TouchableWithoutFeedback onPress={handleLogin}>
+          <View style={styles.buttonWrapper}>
+            <Button
+              mode="contained"
+              buttonColor="#FCB316"
+              style={styles.button}
+              labelStyle={styles.buttonText}
+              loading={loading}
+              disabled={loading}
+            >
+              Log In
+            </Button>
+          </View>
+        </TouchableWithoutFeedback>
         <OrDivider />
         <Button
           mode="text"
@@ -173,8 +177,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'right',
   },
-  button: {
+  buttonWrapper: {
     width: '90%',
+  },
+  button: {
+    width: '100%',
     height: 50,
     borderRadius: 10,
     justifyContent: 'center',

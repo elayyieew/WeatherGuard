@@ -16,7 +16,7 @@
       "package": "com.weatherguard.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/small_logo.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#091A34"
       },
       "googleServicesFile": "./google-services.json"
     },
@@ -35,7 +35,7 @@
           "image": "./assets/images/small_logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#091A34"
         }
       ],
       "expo-build-properties"

@@ -23,9 +23,9 @@ const Account = ({ navigation }) => {
             setPhoneNumber(userData.phoneNumber || "Add Phone Number");
             setBirthdate(userData.birthdate || "Add Birthdate");
           } else {
-            setName("Add Username");
-            setPhoneNumber("Add Phone Number");
-            setBirthdate("Add Birthdate");
+            setName("");
+            setPhoneNumber("");
+            setBirthdate("");
           }
         } catch (error) {
           console.error("Error loading user data:", error);
@@ -54,7 +54,6 @@ const Account = ({ navigation }) => {
         // Save to Firebase
         await setDoc(userDoc, updatedData);
 
-        // Save the updated username to AsyncStorage for SideMenu
         Alert.alert("Success", "Data saved successfully!");
       } catch (error) {
         console.error("Error saving data:", error);
@@ -81,15 +80,13 @@ const Account = ({ navigation }) => {
             style: "destructive",
             onPress: async () => {
               try {
-                // Delete user data from Firestore
                 const userDoc = doc(db, "users", uid);
                 await deleteDoc(userDoc);
 
-                // Delete user account from Firebase Auth
                 await user.delete();
 
                 Alert.alert("Success", "Account deleted successfully!");
-                navigation.navigate("Auth", { screen: "Login" }); // Correct navigation to Login screen
+                navigation.navigate("Auth", { screen: "Login" });
               } catch (error) {
                 console.error("Error deleting account:", error);
                 Alert.alert("Error", "Failed to delete account. Please try again.");
@@ -110,7 +107,6 @@ const Account = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
         <Text style={styles.sectionTitle}>Personal Details</Text>
 
         <View style={styles.editableContainer}>
@@ -118,10 +114,11 @@ const Account = ({ navigation }) => {
           <View style={styles.editableRow}>
             {isEditing ? (
               <TextInput
-                style={styles.input}
+                style={[styles.input, { color: '#fff' }]}
                 value={name}
                 onChangeText={setName}
-                placeholder="Enter Username"
+                placeholder="Enter your username"
+                placeholderTextColor="#ccc"
                 autoFocus
               />
             ) : (
@@ -135,10 +132,11 @@ const Account = ({ navigation }) => {
           <View style={styles.editableRow}>
             {isEditing ? (
               <TextInput
-                style={styles.input}
+                style={[styles.input, { color: '#fff' }]}
                 value={phoneNumber}
                 onChangeText={setPhoneNumber}
-                placeholder="Enter phone number"
+                placeholder="Enter your phone number"
+                placeholderTextColor="#ccc"
               />
             ) : (
               <Text style={styles.buttonText}>{phoneNumber || 'Add Phone Number'}</Text>
@@ -151,10 +149,11 @@ const Account = ({ navigation }) => {
           <View style={styles.editableRow}>
             {isEditing ? (
               <TextInput
-                style={styles.input}
+                style={[styles.input, { color: '#fff' }]}
                 value={birthdate}
                 onChangeText={setBirthdate}
-                placeholder="YYYY-MM-DD"
+                placeholder="MM-DD-YYYY"
+                placeholderTextColor="#ccc"
               />
             ) : (
               <Text style={styles.buttonText}>{birthdate || 'Add Birthdate'}</Text>
@@ -193,15 +192,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
   },
-  profileSection: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  emailText: {
-    color: '#fff',
-    fontSize: 14,
-    marginTop: 10,
-  },
   sectionTitle: {
     fontSize: 18,
     color: '#fff',
@@ -221,17 +211,16 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   input: {
-    backgroundColor: '#E0F7FA',
+    backgroundColor: '#123264',
     borderRadius: 5,
     padding: 10,
-    color: '#000',
   },
   buttonText: {
     color: '#fff',
   },
   editDetailsButton: {
     marginTop: 20,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#4A5C74',
     borderRadius: 10,
     padding: 15,
   },
@@ -247,7 +236,7 @@ const styles = StyleSheet.create({
   },
   saveChangesButton: {
     marginTop: 20,
-    backgroundColor: '#28A745',
+    backgroundColor: '#5CB85C',
     borderRadius: 10,
     padding: 15,
   },
@@ -258,7 +247,7 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     marginTop: 20,
-    backgroundColor: '#FF3B30',
+    backgroundColor: '#D9534F',
     borderRadius: 10,
     padding: 15,
   },
